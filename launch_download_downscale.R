@@ -7,11 +7,12 @@
 #these directories won't change on container
 print(paste("Running NOAA scripts starting at:", as.character(Sys.time())))
 
-output_directory <- "/root/flare/shared/"
 configuration_yaml <- "noaa_download_scale_config.yml"
 
 #Read configuration file
 config_file <- yaml::read_yaml(configuration_yaml)
+
+output_directory <- readr::read_csv(config_file$output_directory)
 
 #Read list of latitude and longitudes
 neon_sites <- readr::read_csv(config_file$site_file)
